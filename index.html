@@ -52,8 +52,49 @@ SPOTIPY_CLIENT_SECRET = '84668a476d394a5fbc528a22d59a92d5'
 auth_manager = SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
 sp = spotipy.Spotify(auth_manager=auth_manager)
 ```
+		<p>Un cop s'estableix l'autenticació, podem utilitzar la funció 'playlist_items' per obtenir els elements que s'ubiquen dins de la llista de reproducció. En aquest cas, es fa servir l'ID de la llista de reproducció "37i9dQZF1DWZYOM6QxgTaX". Aquesta funció retorna un diccionari amb les dades dels elements de la llista de reproducció.</p>
 
+```python
+playlist = '37i9dQZF1DWZYOM6QxgTaX'
+query = sp.playlist_items(playlist, fields=None, limit=100, offset=0, market=None)
+```
+		<p>Un cop ens trobem dins la llista de reproducció, podem iterar per cada element de la resposta per obtenir informació específica sobre cada cançó i artista. Com podem veure en l'exemple, s'aconsegueix la següent informació: el nom de la cançó, el nom de l'artista, l'ID de l'artista, la popularitat de la cançó, l'any de llançament, l'àlbum, la categoria i els gèneres de l'artista.</p>
 
+ 
+```python
+relacions = []
+ 
+for i in query["items"]:
+    artists = i["track"]["artists"]
+ 
+    for artist in artists:
+        source_artist_name = artist["name"]
+        source_artist_id = artist["id"]
+ 
+        track_info = sp.track(i["track"]["id"])
+        track_name = track_info["name"]
+        album_name = track_info["album"]["name"]
+        popularity = track_info["popularity"]
+        release_date = track_info["album"]["release_date"]
+        category = track_info["album"]["album_type"]
+ 
+        artist_info = sp.artist(source_artist_id)
+        genres = artist_info["genres"]
+ 
+        relacions.append({
+            "Canción": track_name,
+            "Artista": source_artist_name,
+            "ID del Artista": source_artist_id,
+            "Popularidad": popularity,
+            "Año de lanzamiento": release_date,
+            "Álbum": album_name,
+            "Categoría": category,
+            "Géneros": genres
+        })
+ 
+df = pd.DataFrame(relacions)
+df.to_csv('playlist.csv', index=False)
+```
 
 
 <!-- Exemple de Fragment de codi generat amb http://hilite.me/ -->
