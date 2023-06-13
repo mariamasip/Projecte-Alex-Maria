@@ -54,47 +54,81 @@ sp <span style="color: #333333">=</span> spotipy<span style="color: #333333">.</
 
 		<p>Un cop s'estableix l'autenticació, podem utilitzar la funció 'playlist_items' per obtenir els elements que s'ubiquen dins de la llista de reproducció. En aquest cas, es fa servir l'ID de la llista de reproducció "37i9dQZF1DWZYOM6QxgTaX". Aquesta funció retorna un diccionari amb les dades dels elements de la llista de reproducció.</p>
 
-```python
-playlist = '37i9dQZF1DWZYOM6QxgTaX'
-query = sp.playlist_items(playlist, fields=None, limit=100, offset=0, market=None)
-```
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">playlist <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;37i9dQZF1DWZYOM6QxgTaX&#39;</span>
+query <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>playlist_items(playlist, fields<span style="color: #333333">=</span><span style="color: #007020">None</span>, limit<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">100</span>, offset<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>, market<span style="color: #333333">=</span><span style="color: #007020">None</span>)
+</pre></div>
 		<p>Un cop ens trobem dins la llista de reproducció, podem iterar per cada element de la resposta per obtenir informació específica sobre cada cançó i artista. Com podem veure en l'exemple, s'aconsegueix la següent informació: el nom de la cançó, el nom de l'artista, l'ID de l'artista, la popularitat de la cançó, l'any de llançament, l'àlbum, la categoria i els gèneres de l'artista.</p>
 
  
-```python
-relacions = []
+`<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="background-color: #fff0f0">``</span>python
+relacions <span style="color: #333333">=</span> []
  
-for i in query["items"]:
-    artists = i["track"]["artists"]
+<span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> query[<span style="background-color: #fff0f0">&quot;items&quot;</span>]:
+    artists <span style="color: #333333">=</span> i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;artists&quot;</span>]
  
-    for artist in artists:
-        source_artist_name = artist["name"]
-        source_artist_id = artist["id"]
+    <span style="color: #008800; font-weight: bold">for</span> artist <span style="color: #000000; font-weight: bold">in</span> artists:
+        source_artist_name <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+        source_artist_id <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;id&quot;</span>]
  
-        track_info = sp.track(i["track"]["id"])
-        track_name = track_info["name"]
-        album_name = track_info["album"]["name"]
-        popularity = track_info["popularity"]
-        release_date = track_info["album"]["release_date"]
-        category = track_info["album"]["album_type"]
+        track_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>track(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
+        track_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+        album_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+        popularity <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;popularity&quot;</span>]
+        release_date <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;release_date&quot;</span>]
+        category <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;album_type&quot;</span>]
  
-        artist_info = sp.artist(source_artist_id)
-        genres = artist_info["genres"]
+        artist_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>artist(source_artist_id)
+        genres <span style="color: #333333">=</span> artist_info[<span style="background-color: #fff0f0">&quot;genres&quot;</span>]
  
-        relacions.append({
-            "Canción": track_name,
-            "Artista": source_artist_name,
-            "ID del Artista": source_artist_id,
-            "Popularidad": popularity,
-            "Año de lanzamiento": release_date,
-            "Álbum": album_name,
-            "Categoría": category,
-            "Géneros": genres
+        relacions<span style="color: #333333">.</span>append({
+            <span style="background-color: #fff0f0">&quot;Canción&quot;</span>: track_name,
+            <span style="background-color: #fff0f0">&quot;Artista&quot;</span>: source_artist_name,
+            <span style="background-color: #fff0f0">&quot;ID del Artista&quot;</span>: source_artist_id,
+            <span style="background-color: #fff0f0">&quot;Popularidad&quot;</span>: popularity,
+            <span style="background-color: #fff0f0">&quot;Año de lanzamiento&quot;</span>: release_date,
+            <span style="background-color: #fff0f0">&quot;Álbum&quot;</span>: album_name,
+            <span style="background-color: #fff0f0">&quot;Categoría&quot;</span>: category,
+            <span style="background-color: #fff0f0">&quot;Géneros&quot;</span>: genres
         })
  
-df = pd.DataFrame(relacions)
-df.to_csv('playlist.csv', index=False)
-```
+df <span style="color: #333333">=</span> pd<span style="color: #333333">.</span>DataFrame(relacions)
+df<span style="color: #333333">.</span>to_csv(<span style="background-color: #fff0f0">&#39;playlist.csv&#39;</span>, index<span style="color: #333333">=</span><span style="color: #007020">False</span>)
+<span style="background-color: #fff0f0">``</span><span style="color: #FF0000; background-color: #FFAAAA">`</span>
+</pre></div>
+
+	<p> Recol·lectades aquestes dades, s'afegeixen en una llista anomenada `relacions`. Finalment, es converteix aquesta llista en un DataFrame de Pandas i es guarda en un fitxer CSV anomenat "playlist.csv".<br></br>Per a focalitzar encara més en l’estudi, s’ha realitzat un segon codi, que extreu infirmació més detallada dels artistes més populars. Aquest segueix la mateixa estructura que el primer, però se li ha especificat de quins artistes es vol treure la informació i l’extracció de dades s’ha dut a terme fora de la llista. A continuació, es proporciona la part corresponent del codi:</p>
+	<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> query[<span style="background-color: #fff0f0">&quot;items&quot;</span>]:
+    artists <span style="color: #333333">=</span> i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;artists&quot;</span>]
+ 
+    <span style="color: #008800; font-weight: bold">for</span> artist <span style="color: #000000; font-weight: bold">in</span> artists:
+        source_artist_name <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+        source_artist_id <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;id&quot;</span>]
+ 
+        <span style="color: #008800; font-weight: bold">if</span> source_artist_name <span style="color: #000000; font-weight: bold">in</span> [<span style="background-color: #fff0f0">&#39;Blaumut&#39;</span>, <span style="background-color: #fff0f0">&#39;The Tyets&#39;</span>, <span style="background-color: #fff0f0">&#39;Julieta&#39;</span>, <span style="background-color: #fff0f0">&#39;Figa Flawas&#39;</span>, <span style="background-color: #fff0f0">&#39;Ginestà&#39;</span>, <span style="background-color: #fff0f0">&#39;Suu&#39;</span>]:
+            track_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>track(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
+            track_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+            album_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;name&quot;</span>]
+            popularity <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;popularity&quot;</span>]
+            release_date <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;release_date&quot;</span>]
+            category <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;album_type&quot;</span>]
+            artist_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>artist(source_artist_id)
+            genres <span style="color: #333333">=</span> artist_info[<span style="background-color: #fff0f0">&quot;genres&quot;</span>]
+            audio_features <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>audio_features(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
+            danceability <span style="color: #333333">=</span> audio_features[<span style="color: #0000DD; font-weight: bold">0</span>][<span style="background-color: #fff0f0">&quot;danceability&quot;</span>]
+</pre></div>
+
+Per a una visualització completa del codi, es pot accedir al següent repositori de GitHub: [Enllaç al repositori GitHub amb el codi complet](https://github.com/exemple/codi-complet)<br></br>Aquest procés permet obtenir dades rellevants per a l'anàlisi i la manipulació de la informació en el context de la música catalana, que caldrà relacionar en els apartats següents. 
+
+	
+
+
+
+
+
+
+
+
+
 
 
 <!-- Exemple de Fragment de codi generat amb http://hilite.me/ -->
