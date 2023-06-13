@@ -41,17 +41,17 @@
                <h2>Obtenció de dades</h2> 
 		<p>Per tal d'acotar el nostre estudi, s'ha focalitzat l'extracció de dades sobre la llista de reproducció oficial de música catalana, IndieCat, que recull les cançons més populars actualment. Trobem oportú realitzar-ho d'aquesta manera, ja que obtenim un primer dataset amb informació genèrica de tots els integrants de la llista de reproducció, on podrem esbrinar els gèneres, els artistes més populars del moment, les col·laboracions més destacades, etc.<br></br>A continuació, es proporciona una explicació detallada del procés d'obtenció de dades mitjançant la llibreria Spotipy de Python i com s'han recol·lectat aquestes dades de la llista de reproducció IndieCat d'Spotify.<br></br>Per aconseguir les dades de la llista de reproducció de Spotify, primer cal establir l'autenticació a través de les credencials del client de Spotify utilitzant la classe 'SpotifyClientCredentials' de la llibreria Spotipy. Aquesta classe requereix unes claus; el Client ID i el Client Secret proporcionats a la pàgina Spotify for developers, dins la plataforma.<br></p>
 
-```python
-from spotipy.oauth2 import SpotifyClientCredentials
-import spotipy
-import pandas as pd
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">spotipy.oauth2</span> <span style="color: #008800; font-weight: bold">import</span> SpotifyClientCredentials
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">spotipy</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pandas</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">pd</span>
  
-SPOTIPY_CLIENT_ID = 'a0f97f58de884da695b1e9df20ececa9'
-SPOTIPY_CLIENT_SECRET = '84668a476d394a5fbc528a22d59a92d5'
+SPOTIPY_CLIENT_ID <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;a0f97f58de884da695b1e9df20ececa9&#39;</span>
+SPOTIPY_CLIENT_SECRET <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;84668a476d394a5fbc528a22d59a92d5&#39;</span>
  
-auth_manager = SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
-sp = spotipy.Spotify(auth_manager=auth_manager)
-```
+auth_manager <span style="color: #333333">=</span> SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
+sp <span style="color: #333333">=</span> spotipy<span style="color: #333333">.</span>Spotify(auth_manager<span style="color: #333333">=</span>auth_manager)
+</pre></div>
+
 		<p>Un cop s'estableix l'autenticació, podem utilitzar la funció 'playlist_items' per obtenir els elements que s'ubiquen dins de la llista de reproducció. En aquest cas, es fa servir l'ID de la llista de reproducció "37i9dQZF1DWZYOM6QxgTaX". Aquesta funció retorna un diccionari amb les dades dels elements de la llista de reproducció.</p>
 
 ```python
