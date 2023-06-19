@@ -1,4 +1,6 @@
-Aquest codi utilitza la llibreria Spotipy per interactuar amb l'API de Spotify. Bàsicament, obté les dades d'una llista de reproducció específica i en crea un fitxer CSV que conté informació sobre les cançons, artistes i altres detalls relacionats. És necessari proporcionar les credencials del client de Spotify per autenticar-se i accedir a les dades.
+# Explicació detallada del codi
+### Codi 1; Extracció de dades de la llista IndieCat
+Aquest codi utilitza la llibreria Spotipy per interactuar amb l'API de la plataforma de música, Spotify. Bàsicament, obté les dades d'una llista de reproducció específica i en crea un fitxer CSV que conté informació sobre les cançons, artistes i altres detalls relacionats. És necessari proporcionar les credencials del client de Spotify per autenticar-se i accedir a aquestes dades.
 
 ```Python
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -6,14 +8,14 @@ import spotipy
 import pandas as pd
 
 # Credencials del client de Spotify
-SPOTIPY_CLIENT_ID = 'a0f97f58de884da695b1e9df20ececa9'
-SPOTIPY_CLIENT_SECRET = '84668a476d394a5fbc528a22d59a92d5'
+SPOTIPY_CLIENT_ID = 'XXXXX'
+SPOTIPY_CLIENT_SECRET = 'XXXXX'
 
 # Inicialitza l'autenticació amb les credencials del client de Spotify
 auth_manager = SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
-# Identificador de la llista de reproducció desitjada
+# Identificador de la llista de reproducció
 playlist = '37i9dQZF1DWZYOM6QxgTaX'
 
 # Obté els elements de la llista de reproducció utilitzant l'API de Spotify
@@ -58,14 +60,14 @@ for i in query["items"]:
 # Crea un DataFrame a partir de les relacions
 df = pd.DataFrame(relacions)
 
-# Exporta el DataFrame a un fitxer CSV
+# Exporta el DataFrame a CSV
 df.to_csv('playlist.csv', index=False)
 
 ```
-
+### Codi 2; Extracció de dades fora de la llista
 Aquest segon codi és una versió ampliada del codi anterior, amb la següent modificació;
-S'afegeix una comprovació per verificar si l'artista de cada cançó es troba en una llista determinada ('Blaumut', 'The Tyets', 'Julieta', 'Figa Flawas', 'Ginestà', 'Suu').
-Aquesta comprovació es fa utilitzant una declaració if. Si l'artista està en la llista, s'obté informació addicional sobre la cançó, com ara les característiques de l'àudio (en aquest cas, només es pren la "danceability").Les dades de la cançó, l'artista, les característiques de l'àudio i altres detalls s'afegeixen a la llista de relacions com un diccionari. Finalment, es crea un DataFrame de Pandas a partir de les relacions i es guarda com un fitxer CSV anomenat 'playlist.csv', sense incloure l'índex.
+S'afegeix una comprovació per verificar si l'artista de cada cançó es troba e la llista ('Blaumut', 'The Tyets', 'Julieta', 'Figa Flawas', 'Ginestà', 'Suu').
+Si l'artista està dins la llista, s'obté informació addicional sobre la cançó fora de la llista, com ara les característiques de l'àudio, les seves cançons més populars, etc. S'afegeixen a la llista de relacions com un diccionari per finalment, crear un DataFrame de Pandas i es guarda com un fitxer CSV anomenat 'playlist.csv'.
 
 ```Python
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -73,8 +75,8 @@ import spotipy
 import pandas as pd
 
 # Configuració de les credencials del client de Spotify
-SPOTIPY_CLIENT_ID = 'a0f97f58de884da695b1e9df20ececa9'
-SPOTIPY_CLIENT_SECRET = '84668a476d394a5fbc528a22d59a92d5'
+SPOTIPY_CLIENT_ID = 'XXXXX'
+SPOTIPY_CLIENT_SECRET = 'XXXXX'
 
 # Autenticació amb les credencials del client de Spotify
 auth_manager = SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
@@ -98,7 +100,7 @@ for i in query["items"]:
         source_artist_name = artist["name"]
         source_artist_id = artist["id"]
 
-        # Comprovar si l'artista està en una llista determinada
+        # Comprovar si l'artista està a la llista 
         if source_artist_name in ['Blaumut', 'The Tyets', 'Julieta', 'Figa Flawas', 'Ginestà', 'Suu']:
             # Obtindre informació de la cançó
             track_info = sp.track(i["track"]["id"])
@@ -112,7 +114,7 @@ for i in query["items"]:
             artist_info = sp.artist(source_artist_id)
             genres = artist_info["genres"]
 
-            # Obtindre característiques de l'àudio de la cançó
+            # Obtindre característiques de la cançó
             audio_features = sp.audio_features(i["track"]["id"])
             danceability = audio_features[0]["danceability"]
 
