@@ -129,25 +129,37 @@
 
 			
 				<p> Recol·lectades aquestes dades, s'afegeixen en una llista anomenada `relacions`. Finalment, es converteix aquesta llista en un DataFrame de Pandas i es guarda en un fitxer CSV anomenat "playlist.csv".<br></br>Per a focalitzar encara més en l’estudi, s’ha realitzat un segon codi, que extreu infirmació més detallada dels artistes més populars. Aquest segueix la mateixa estructura que el primer, però se li ha especificat de quins artistes es vol treure la informació i l’extracció de dades s’ha dut a terme fora de la llista. A continuació, es proporciona la part corresponent del codi:</p>
-				<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> query[<span style="background-color: #fff0f0">&quot;items&quot;</span>]:
-			    artists <span style="color: #333333">=</span> i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;artists&quot;</span>]
-			 
-			    <span style="color: #008800; font-weight: bold">for</span> artist <span style="color: #000000; font-weight: bold">in</span> artists:
-			        source_artist_name <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			        source_artist_id <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;id&quot;</span>]
-			 
-			        <span style="color: #008800; font-weight: bold">if</span> source_artist_name <span style="color: #000000; font-weight: bold">in</span> [<span style="background-color: #fff0f0">&#39;Blaumut&#39;</span>, <span style="background-color: #fff0f0">&#39;The Tyets&#39;</span>, <span style="background-color: #fff0f0">&#39;Julieta&#39;</span>, <span style="background-color: #fff0f0">&#39;Figa Flawas&#39;</span>, <span style="background-color: #fff0f0">&#39;Ginestà&#39;</span>, <span style="background-color: #fff0f0">&#39;Suu&#39;</span>]:
-			            track_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>track(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
-			            track_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			            album_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			            popularity <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;popularity&quot;</span>]
-			            release_date <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;release_date&quot;</span>]
-			            category <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;album_type&quot;</span>]
-			            artist_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>artist(source_artist_id)
-			            genres <span style="color: #333333">=</span> artist_info[<span style="background-color: #fff0f0">&quot;genres&quot;</span>]
-			            audio_features <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>audio_features(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
-			            danceability <span style="color: #333333">=</span> audio_features[<span style="color: #0000DD; font-weight: bold">0</span>][<span style="background-color: #fff0f0">&quot;danceability&quot;</span>]
-			</pre></div>
+				<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">query[</span><span style="color: #e6db74">&quot;items&quot;</span><span style="color: #f8f8f2">]:</span> 
+
+					    <span style="color: #f8f8f2">artists</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;artists&quot;</span><span style="color: #f8f8f2">]</span> 
+					    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">artist</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">artists:</span> 
+					
+					        <span style="color: #f8f8f2">source_artist_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					        <span style="color: #f8f8f2">source_artist_id</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">source_artist_name</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;Blaumut&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;The Tyets&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Julieta&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Figa Flawas&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Ginestà&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Suu&#39;</span><span style="color: #f8f8f2">]:</span> 
+					
+					            <span style="color: #f8f8f2">track_info</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">track(i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">])</span> 
+					
+					            <span style="color: #f8f8f2">track_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">album_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">popularity</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">release_date</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;release_date&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">category</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;album_type&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">artist_info</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">artist(source_artist_id)</span> 
+					
+					            <span style="color: #f8f8f2">genres</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist_info[</span><span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					            <span style="color: #f8f8f2">audio_features</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">audio_features(i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">])</span> 
+					
+					            <span style="color: #f8f8f2">danceability</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">audio_features[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;danceability&quot;</span><span style="color: #f8f8f2">]</span>  </pre></div>
+
 			
 				<p>Per a una visualització completa del codi, es pot accedir al següent repositori de GitHub: [Enllaç al repositori GitHub amb el codi complet](https://github.com/exemple/codi-complet).<br> Aquest procés permet obtenir dades rellevants per a l'anàlisi i la manipulació de la informació en el context de la música catalana, que caldrà relacionar en els apartats següents. </p>
 
