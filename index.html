@@ -36,9 +36,9 @@
                 <h1>Creació d'un festival de música</h1>
 		<h3>Extracció i anàlisi de dades d'Spotify </h3>
 		<img src="cartell2.png" alt="pòster" width="" height="">
-                <h2>Cas d'estudi</h2>
+                <h2>CAS D'ESTUDI</h2>
                 	<p>Catalunya és la seu de molts festivals de música reconeguts internacionalment, des del Sònar, el Primavera Sound, el Barcelona Beach Festival, i també de festivals de parla catalana, com el Canet Rock, l'acampada jove, el Cabró Rock, etc. <br></br>Aquest cas d'estudi, es desenvolupa en un escenari fictici on es pretén crear el cartell d'artistes per a un nou festival, que recull els grups de música més populars de la llengua catalana. A través de l'exploració de les dades extretes d'Spotify, i a partir d'unes mètriques establertes, es formalitzarà la programació, des dels caps de cartell fins als artistes convidats.<br></br>S'ha fet aquesta tria del tema, ja que representa una motivació dels dos integrants del grup, que a la vegada es podria extrapolar a un projecte a llarg termini. Ens ha semblat interessant en aquest darrer treball, no només basar el projecte en l'anàlisi de dades, sinó aplicar-les a una iniciativa que es podria esdevenir real.</p>
-                <h2>Obtenció de dades</h2> 
+                <h2>OBTENCIÓ DE DADES</h2> 
 			<p>Per tal d'acotar el nostre estudi, s'ha focalitzat l'extracció de dades sobre la llista de reproducció oficial de música catalana, IndieCat, que recull les cançons més populars actualment. Trobem oportú realitzar-ho d'aquesta manera, ja que obtenim un primer dataset amb informació genèrica de tots els integrants de la llista de reproducció, on podrem esbrinar els gèneres, els artistes més populars del moment, les col·laboracions més destacades, etc.<br></br>A continuació, es proporciona una explicació detallada del procés d'obtenció de dades mitjançant la llibreria Spotipy de Python i com s'han recol·lectat aquestes dades de la llista de reproducció IndieCat d'Spotify.<br></br>Per aconseguir les dades de la llista de reproducció de Spotify, primer cal establir l'autenticació a través de les credencials del client de Spotify utilitzant la classe 'SpotifyClientCredentials' de la llibreria Spotipy. Aquesta classe requereix unes claus; el Client ID i el Client Secret proporcionats a la pàgina Spotify for developers, dins la plataforma.<br></p>
 			
 			
@@ -167,7 +167,7 @@
 			<p>En resum, el processament i combinació de les dades s'ha realitzat extraient les dades des de Spotify, organitzant-les en un format tabular, filtrant i transformant les dades segons les necessitats i combinant-les en una sola taula per generar el dataset final. Aquest procés assegura que les dades estiguin estructurades i siguin pròpies per a anàlisi posterior.</p>
 	
 	
-		<h2>Presentació del dataset</h2>
+		<h2>PESENTACIÓ DEL DATASET</h2>
 			<p> El dataset es presenta en format CSV, que significa que les dades estan organitzades en columnes separades per comes. Cada fila del dataset representa una entrada o una observació única, mentre que les columnes contenen les diferents variables o atributs que s'han recopilat.
 			A continuació, es proporciona una descripció de les columnes del dataset:
 			</p>
@@ -196,7 +196,7 @@
 			-  "Danzabilidad": Indica la ballabilitat de les cançons<br>
 			</p>
 
-		<h2>Article</h2>
+		<h2>ARTICLE</h2>
 			<p>En la següent anàlisi farem un estudi de la música i els artistes catalans més escoltats del moment a Spotify, ens basarem en les dades i els resultats per a dissenyar el cartell d'un nou festival de música a la costa daurada, més concretament al poble turístic de Cambrils. Per a fer aquesta anàlisi, extraurem les dades de l'única llista de reproducció en català oficial de Spotify, IndieCat, que compta amb més de trenta mil seguidors i la formen les noranta cançons més sonades del moment en català.<br></br>Comencem amb una visió general del panorama, contextualitzant les cançons que es troben dins la llista. En el següent gràfic podem observar que la majoria de les cançons són dels últims anys, sent 25 cançons del 2023, 18 cançons del 2021, 16 cançons del 2022, 15 cançons del 2020. La resta són cançons més antigues que podríem considerar clàssics que mai passen de moda i que avui dia són molt presents en la plataforma. Per tant, es preveu que els artistes més populars, seran majoritàriament els que han llençat alguna novetat recentment.<br></p>
 			<div class='tableauPlaceholder' id='viz1686667341100' style='position: relative'><noscript><a href='#'><img alt='De quin any son les cançons ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sp&#47;spotifyIndieCat7&#47;Hoja7&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='spotifyIndieCat7&#47;Hoja7' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sp&#47;spotifyIndieCat7&#47;Hoja7&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1686667341100');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 			<p> També podem veure en aquest gràfic, que la producció de música catalana no ha decaigut i que cançons publicades en els últims anys arriben a una audiència que les continua gaudint i escoltant cada dia.
@@ -230,14 +230,14 @@
 			<div class='tableauPlaceholder' id='viz1686667341100' style='position: relative'><noscript><a href='#'><img alt='De quin any son les cançons ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sp&#47;spotifyIndieCat7&#47;Hoja7&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='spotifyIndieCat7&#47;Hoja7' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sp&#47;spotifyIndieCat7&#47;Hoja7&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1686667341100');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>	
 			<p>Per a finalitzar aquest anàlisis, seguidament hem realitzat per cada grup, un gràfic on apareixen les seves 10 cançons més populars, que defineixen part del setlist principal del festival.  </p>
 
-		<h2>Conclusions</h2>
+		<h2>CONCLUSIONS</h2>
 			<p>En conclusió, a través d’aquest anàlisis, hem pogut idear el cartell “perfecte” per a un festival, aquest estiu 2023, a Catalunya. La creació d’aquest ha estat totalment objectiva, fent cas de les dades extretes, i per tant, a la vegada resolent les necessitats a l’audiència catalana.<br>A través d’aquest projecte, hem pogut veure una aplicació real de l'anàlisi de dades, a través d’una temàtica que ens cridava l’atenció, com es la creació d’un festival de música. A més, creiem que es podria esdevenir un projecte real, cosa que fa més interessant aquest anàlisi.  <br>  </p>
 		
                        
             <footer>
 			<hr>
 			<p>
-               AUTORES
+               AUTORS
             </p>
 
 			</footer>
