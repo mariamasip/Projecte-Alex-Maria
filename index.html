@@ -19,12 +19,17 @@
 	    h1{
 	        color: #ADE9A9;
 	        font-size: 50px;
+		font-weight: bold;
 	     
 	     }
+	    h3{
+		font-size: 30px;
+		font-weight: bold;
+	      }
 	    h2{
 	        color: #FF4F2C;
 	        font-size: 30px;
-	     
+		font-weight: bold;
 	     }
             p {
                 color:white;
@@ -49,12 +54,13 @@
                 <h1>Creació d'un festival de música</h1>
 		<h3>Extracció i anàlisi de dades d'Spotify </h3>
 		<img src="cartell2.png" alt="pòster" width="" height="">
+		
                 <h2>CAS D'ESTUDI</h2>
                 	<p>Catalunya és la seu de molts festivals de música reconeguts internacionalment, des del Sònar, el Primavera Sound, el Barcelona Beach Festival, i també de festivals de parla catalana, com el Canet Rock, l'acampada jove, el Cabró Rock, etc. <br></br>Aquest cas d'estudi, es desenvolupa en un escenari fictici on es pretén crear el cartell d'artistes per a un nou festival, que recull els grups de música més populars de la llengua catalana. A través de l'exploració de les dades extretes d'Spotify, i a partir d'unes mètriques establertes, es formalitzarà la programació, des dels caps de cartell fins als artistes convidats.<br></br>S'ha fet aquesta tria del tema, ja que representa una motivació dels dos integrants del grup, que a la vegada es podria extrapolar a un projecte a llarg termini. Ens ha semblat interessant en aquest darrer treball, no només basar el projecte en l'anàlisi de dades, sinó aplicar-les a una iniciativa que es podria esdevenir real.</p>
-                <h2>OBTENCIÓ DE DADES</h2> 
+               
+		<h2>OBTENCIÓ DE DADES</h2> 
 			<p>Per tal d'acotar el nostre estudi, s'ha focalitzat l'extracció de dades sobre la llista de reproducció oficial de música catalana, IndieCat, que recull les cançons més populars actualment. Trobem oportú realitzar-ho d'aquesta manera, ja que obtenim un primer dataset amb informació genèrica de tots els integrants de la llista de reproducció, on podrem esbrinar els gèneres, els artistes més populars del moment, les col·laboracions més destacades, etc.<br></br>A continuació, es proporciona una explicació detallada del procés d'obtenció de dades mitjançant la llibreria Spotipy de Python i com s'han recol·lectat aquestes dades de la llista de reproducció IndieCat d'Spotify.<br></br>Per aconseguir les dades de la llista de reproducció de Spotify, primer cal establir l'autenticació a través de les credencials del client de Spotify utilitzant la classe 'SpotifyClientCredentials' de la llibreria Spotipy. Aquesta classe requereix unes claus; el Client ID i el Client Secret proporcionats a la pàgina Spotify for developers, dins la plataforma.<br></p>
-			
-			
+	
 			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span> 
 
 				<span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span> 
