@@ -1,5 +1,5 @@
 # Explicació detallada del codi
-### Codi 1; Extracció de dades de la llista IndieCat
+### Codi 1: Extracció de dades de la llista IndieCat
 Aquest codi utilitza la llibreria Spotipy per interactuar amb l'API de la plataforma de música, Spotify. Bàsicament, obté les dades d'una llista de reproducció específica i en crea un fitxer CSV que conté informació sobre les cançons, artistes i altres detalls relacionats. És necessari proporcionar les credencials del client de Spotify per autenticar-se i accedir a aquestes dades.
 
 ```Python
@@ -64,7 +64,7 @@ df = pd.DataFrame(relacions)
 df.to_csv('playlist.csv', index=False)
 
 ```
-### Codi 2; Extracció de dades fora de la llista
+### Codi 2: Extracció de dades fora de la llista
 Aquest segon codi és una versió ampliada del codi anterior, amb la següent modificació;
 S'afegeix una comprovació per verificar si l'artista de cada cançó es troba e la llista ('Blaumut', 'The Tyets', 'Julieta', 'Figa Flawas', 'Ginestà', 'Suu').
 Si l'artista està dins la llista, s'obté informació addicional sobre la cançó fora de la llista, com ara les característiques de l'àudio, les seves cançons més populars, etc. S'afegeixen a la llista de relacions com un diccionari per finalment, crear un DataFrame de Pandas i es guarda com un fitxer CSV anomenat 'playlist.csv'.
