@@ -59,47 +59,74 @@
 			
 					<p>Un cop s'estableix l'autenticació, podem utilitzar la funció 'playlist_items' per obtenir els elements que s'ubiquen dins de la llista de reproducció. En aquest cas, es fa servir l'ID de la llista de reproducció "37i9dQZF1DWZYOM6QxgTaX". Aquesta funció retorna un diccionari amb les dades dels elements de la llista de reproducció.</p>
 			
-			<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">playlist <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;37i9dQZF1DWZYOM6QxgTaX&#39;</span>
-			query <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>playlist_items(playlist, fields<span style="color: #333333">=</span><span style="color: #007020">None</span>, limit<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">100</span>, offset<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>, market<span style="color: #333333">=</span><span style="color: #007020">None</span>)
-			</pre></div>
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">playlist</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;37i9dQZF1DWZYOM6QxgTaX&#39;</span> 
+					<span style="color: #f8f8f2">query</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">playlist_items(playlist,</span> <span style="color: #f8f8f2">fields</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">None,</span> <span style="color: #f8f8f2">limit</span><span style="color: #f92672">=</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">offset</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">market</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">None)</span> </pre></div>
+
 					<p>Un cop ens trobem dins la llista de reproducció, podem iterar per cada element de la resposta per obtenir informació específica sobre cada cançó i artista. Com podem veure en l'exemple, s'aconsegueix la següent informació: el nom de la cançó, el nom de l'artista, l'ID de l'artista, la popularitat de la cançó, l'any de llançament, l'àlbum, la categoria i els gèneres de l'artista.</p>
 			
 			 
-			`<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="background-color: #fff0f0">``</span>python
-			relacions <span style="color: #333333">=</span> []
-			 
-			<span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> query[<span style="background-color: #fff0f0">&quot;items&quot;</span>]:
-			    artists <span style="color: #333333">=</span> i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;artists&quot;</span>]
-			 
-			    <span style="color: #008800; font-weight: bold">for</span> artist <span style="color: #000000; font-weight: bold">in</span> artists:
-			        source_artist_name <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			        source_artist_id <span style="color: #333333">=</span> artist[<span style="background-color: #fff0f0">&quot;id&quot;</span>]
-			 
-			        track_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>track(i[<span style="background-color: #fff0f0">&quot;track&quot;</span>][<span style="background-color: #fff0f0">&quot;id&quot;</span>])
-			        track_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			        album_name <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;name&quot;</span>]
-			        popularity <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;popularity&quot;</span>]
-			        release_date <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;release_date&quot;</span>]
-			        category <span style="color: #333333">=</span> track_info[<span style="background-color: #fff0f0">&quot;album&quot;</span>][<span style="background-color: #fff0f0">&quot;album_type&quot;</span>]
-			 
-			        artist_info <span style="color: #333333">=</span> sp<span style="color: #333333">.</span>artist(source_artist_id)
-			        genres <span style="color: #333333">=</span> artist_info[<span style="background-color: #fff0f0">&quot;genres&quot;</span>]
-			 
-			        relacions<span style="color: #333333">.</span>append({
-			            <span style="background-color: #fff0f0">&quot;Canción&quot;</span>: track_name,
-			            <span style="background-color: #fff0f0">&quot;Artista&quot;</span>: source_artist_name,
-			            <span style="background-color: #fff0f0">&quot;ID del Artista&quot;</span>: source_artist_id,
-			            <span style="background-color: #fff0f0">&quot;Popularidad&quot;</span>: popularity,
-			            <span style="background-color: #fff0f0">&quot;Año de lanzamiento&quot;</span>: release_date,
-			            <span style="background-color: #fff0f0">&quot;Álbum&quot;</span>: album_name,
-			            <span style="background-color: #fff0f0">&quot;Categoría&quot;</span>: category,
-			            <span style="background-color: #fff0f0">&quot;Géneros&quot;</span>: genres
-			        })
-			 
-			df <span style="color: #333333">=</span> pd<span style="color: #333333">.</span>DataFrame(relacions)
-			df<span style="color: #333333">.</span>to_csv(<span style="background-color: #fff0f0">&#39;playlist.csv&#39;</span>, index<span style="color: #333333">=</span><span style="color: #007020">False</span>)
-			<span style="background-color: #fff0f0">``</span><span style="color: #FF0000; background-color: #FFAAAA">`</span>
-			</pre></div>
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">relacions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span> 
+
+					  
+					
+					<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">query[</span><span style="color: #e6db74">&quot;items&quot;</span><span style="color: #f8f8f2">]:</span> 
+					
+					<span style="color: #f8f8f2">artists</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;artists&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">artist</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">artists:</span> 
+					
+					<span style="color: #f8f8f2">source_artist_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #f8f8f2">source_artist_id</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					  
+					
+					<span style="color: #f8f8f2">track_info</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">track(i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">])</span> 
+					
+					<span style="color: #f8f8f2">track_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #f8f8f2">album_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #f8f8f2">popularity</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #f8f8f2">release_date</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;release_date&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					<span style="color: #f8f8f2">category</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">track_info[</span><span style="color: #e6db74">&quot;album&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;album_type&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					  
+					
+					<span style="color: #f8f8f2">artist_info</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">artist(source_artist_id)</span> 
+					
+					<span style="color: #f8f8f2">genres</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist_info[</span><span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">]</span> 
+					
+					  
+					
+					<span style="color: #f8f8f2">relacions</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append({</span> 
+					
+					<span style="color: #e6db74">&quot;Canción&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">track_name,</span> 
+					
+					<span style="color: #e6db74">&quot;Artista&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">source_artist_name,</span> 
+					
+					<span style="color: #e6db74">&quot;ID del Artista&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">source_artist_id,</span> 
+					
+					<span style="color: #e6db74">&quot;Popularidad&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">popularity,</span> 
+					
+					<span style="color: #e6db74">&quot;Año de lanzamiento&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">release_date,</span> 
+					
+					<span style="color: #e6db74">&quot;Álbum&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">album_name,</span> 
+					
+					<span style="color: #e6db74">&quot;Categoría&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">category,</span> 
+					
+					<span style="color: #e6db74">&quot;Géneros&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">genres</span> 
+					
+					<span style="color: #f8f8f2">})</span> 
+					
+					  
+					
+					<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame(relacions)</span> 
+					
+					<span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">to_csv(</span><span style="color: #e6db74">&#39;playlist.csv&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">index</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">False)</span>  </pre></div>
+
 			
 				<p> Recol·lectades aquestes dades, s'afegeixen en una llista anomenada `relacions`. Finalment, es converteix aquesta llista en un DataFrame de Pandas i es guarda en un fitxer CSV anomenat "playlist.csv".<br></br>Per a focalitzar encara més en l’estudi, s’ha realitzat un segon codi, que extreu infirmació més detallada dels artistes més populars. Aquest segueix la mateixa estructura que el primer, però se li ha especificat de quins artistes es vol treure la informació i l’extracció de dades s’ha dut a terme fora de la llista. A continuació, es proporciona la part corresponent del codi:</p>
 				<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> query[<span style="background-color: #fff0f0">&quot;items&quot;</span>]:
